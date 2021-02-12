@@ -77,8 +77,9 @@ def gear3dgen(innerrad,  # Inner radius (to troughs between teeth)
         anglebias = anglefunc(layerprog)  # Angle to add to the layer
 
         if not quiet:  # Report progress
-            print('Layer:', layer + 1, 'of', vlayers)
+            print('Calculating layer:', layer + 1, 'of', vlayers)
             print(' > Height:', layerz)
+            print(' > Angle:', anglebias)
 
         layerpoints = []  # Local collector of (x,y,z) points per layer
         for lstep in range(len(gearprofile)):
@@ -147,6 +148,9 @@ def g_halfsine(x):  # Undercut half-sinusoidal
 
 
 if __name__ == '__main__':
-    gear3dgen(16, 20, 32, 5, toothfunc=g_halfsine, anglefunc=lambda x: x / 12)
-    gear3dgen(20, 24, 12, 4, anglefunc=lambda x: x / 8, vlayers=8)
-    gear3dgen(14, 16, 16, 4, anglefunc=g_vshape, vlayers=7)
+    ...
+    gear3dgen(2,18,10,32,toothpts=20,anglefunc=lambda x:1/(x*4+0.3)**2,vlayers=40)
+    # gear3dgen(2,18,10,32,toothpts=20,anglefunc=lambda x:math.sin(2*x*6.28)/4,vlayers=40)
+    # gear3dgen(16, 20, 32, 5, toothfunc=g_halfsine, anglefunc=lambda x: x / 12)
+    # gear3dgen(20, 24, 12, 4, anglefunc=lambda x: x / 8, vlayers=8)
+    # gear3dgen(14, 16, 16, 4, anglefunc=g_vshape, vlayers=7)
